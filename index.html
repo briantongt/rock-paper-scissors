@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>     
+
+
+    let playerScore = 0;
+    let computerScore = 0; 
+
+//main game function     
+    function game() {
+
+        //conditional to stop the playRound function
+        if (playerScore == 5 || computerScore == 5) {
+
+            //conditional to determine who wins
+            if (playerScore > computerScore) {
+                console.log("player wins with " + playerScore + " points");
+            } else if (playerScore < computerScore) {
+                console.log("computer wins with " + computerScore + " points");
+            } else {
+                console.log("it's a tie");
+            }
+     
+        //conditional to apply the playRound function
+        } else if (playerScore < 5 || computerScore < 5) { 
+
+            //function to play and add points to a round winner
+            function playRound(playerSelection, computerSelection) {
+                           
+                if (playerSelection == "rock" && computerSelection == "scissors" || 
+                    playerSelection == "paper" && computerSelection == "rock" ||
+                    playerSelection == "scissors" && computerSelection == "paper") {
+                        playerScore++;
+                        console.log("you win: " + "player score: " + playerScore + " | " + "computer score: " + computerScore);
+                        
+                } else if (playerSelection == "rock" && computerSelection == "paper" ||
+                           playerSelection == "paper" && computerSelection == "scissors" ||
+                           playerSelection == "scissors" && computerSelection == "rock") {
+                        computerScore++;
+                        console.log("you loose: " + "player score: " + playerScore + " | " + "computer score: " + computerScore);
+
+                } else if (playerSelection == computerSelection) {
+                        playerScore++;
+                        computerScore++;
+                        console.log("tie: " + "player score: " + playerScore + " | " + "computer score: " + computerScore);
+
+                } else {
+                    console.log("error: please write again the correct words (rock, paper or scissors)");
+                }
+            }           
+        //variables for the playRound function 
+        const playerSelection = playerPlay();
+        const computerSelection = computerPlay();
+
+        //run the playRound function to play
+        playRound(playerSelection, computerSelection)
+        
+            //function for the computer play
+            function computerPlay() {
+                if (Math.random()*100 <= 33) {
+                    return "rock";
+                } else if(Math.random()*100 <=66) {
+                    return "paper";
+                } else {
+                    return "scissors";
+                }
+            }
+            
+            //function for player to select an object to play
+            function playerPlay() {
+                let option = prompt('Player, select your option: rock, paper or scissors');
+                let lower = option.toLowerCase();
+                if (lower == "rock") {
+                    return "rock";
+                } else if (lower == "paper") {
+                    return "paper" 
+                } else if (lower == "scissors") {
+                    return "scissors";
+                } else {
+                    return "error";
+                }
+            }    
+        }
+    }       
+
+  </script>
+</body>
+</html>
+
+
+  
+            <!-- if ("pw") {
+                playerScore++;
+            }  else if ("cw") {
+                computerScore++;
+            } else if ("t") {
+                tieScore++;
+            } else {
+                errorScore++;
+            }
+            console.log("Player score: " + playerScore);
+            console.log("Computer score: " + computerScore);
+            console.log("Ties: " + tieScore);
+            console.log("Input errors: " + errorScore);
+
+
+            function playRound(playerSelection, computerSelection) {
+                if (playerSelection == "rock" && computerSelection == "scissors") {
+                    console.log("player wins case 1");
+                    return pw;
+                } else if (playerSelection == "paper" && computerSelection == "rock") {
+                    console.log("player wins case 2");
+                    return pw;
+                } else if (playerSelection == "scissors" && computerSelection == "paper") {
+                    console.log("player wins case 3");
+                    return pw;
+                } else if (playerSelection == "rock" && computerSelection == "paper") {
+                    console.log("computer wins case 1");
+                    return cw;
+                } else if (playerSelection == "paper" && computerSelection == "scissors") {
+                    console.log("computer wins case 2");
+                    return cw;
+                } else if (playerSelection == "scissors" && computerSelection == "rock") {
+                    console.log("computer wins case 3");
+                    return cw;
+                } else if (playerSelection == computerSelection) {
+                    console.log("tie");
+                    return t;
+                } else {
+                    console.log("you write a wrong word. Try rock, paper or scissors")
+                    return e;
+                }
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                if (playerSelection == "rock" && computerSelection == "scissors") {
+                    return pw;
+                } else if (playerSelection == "paper" && computerSelection == "rock") {
+                    return pw;
+                } else if (playerSelection == "scissors" && computerSelection == "paper") {
+                    return pw;
+                } else if (playerSelection == "rock" && computerSelection == "paper") {
+                    return cw;
+                } else if (playerSelection == "paper" && computerSelection == "scissors") {
+                    return cw;
+                } else if (playerSelection == "scissors" && computerSelection == "rock") {
+                    return cw;
+                } else if (playerSelection == computerSelection) {
+                    return t;
+                } else {
+                    return e;
+                }
+            }
